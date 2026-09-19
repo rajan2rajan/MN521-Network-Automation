@@ -25,3 +25,23 @@ __pycache__/
 *.swp
 *~
 .DS_Store
+
+# GNS3 Cisco/licensed images
+gns3/**/images/
+gns3/**/*.image
+gns3/**/*.bin
+gns3/**/*.ghost
+
+# GNS3 runtime/cache files
+gns3/**/*_log.txt
+gns3/**/*_stdout.txt
+gns3/**/*_lock
+gns3/**/ubridge.log
+gns3/**/ilt_*
+gns3/**/c7200_*_iomem
+gns3/**/c7200_*_bootflash
+gns3/**/c7200_*_nvram
+
+# Private inventory
+ansible/inventory.ini.private
+ansible/inventory.ini
