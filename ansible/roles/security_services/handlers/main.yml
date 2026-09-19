@@ -1,0 +1,4 @@
+---
+- name: Security configuration changed
+  cisco.ios.ios_config:
+    save_when: always

@@ -1,0 +1,12 @@
+---
+- name: Configure VLAN subinterfaces
+  cisco.ios.ios_config:
+    parents: "interface FastEthernet0/0.{{ item.id }}"
+    lines:
+      - "description VLAN{{ item.id }}_{{ item.name }}"
+      - "encapsulation dot1Q {{ item.id }}"
+      - "ip address {{ item.ip }} {{ item.mask }}"
+  loop: "{{ vlan_map[inventory_hostname] | default([]) }}"
+  when: inventory_hostname in vlan_map
+  loop_control:
+    label: "VLAN {{ item.id }}"

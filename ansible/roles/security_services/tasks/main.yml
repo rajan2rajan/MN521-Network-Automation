@@ -1,0 +1,57 @@
+---
+- name: Ensure SSH version 2
+  cisco.ios.ios_config:
+    lines:
+      - ip ssh version 2
+  tags:
+    - ssh
+
+- name: Configure ACL for Ansible SSH access
+  cisco.ios.ios_config:
+    parents: ip access-list standard ANSIBLE_SSH_ONLY
+    lines:
+      - permit host {{ ssh_allowed_host }}
+      - deny any log
+  notify: Security configuration changed
+  tags:
+    - acl
+    - security
+
+- name: Apply ACL to VTY
+  cisco.ios.ios_config:
+    parents: line vty 0 4
+    lines:
+      - access-class ANSIBLE_SSH_ONLY in
+      - login local
+      - transport input ssh
+  notify: Security configuration changed
+  tags:
+    - acl
+    - ssh
+
+- name: Configure NTP
+  cisco.ios.ios_config:
+    lines:
+      - ntp server {{ ntp_server }} prefer
+      - ntp source {{ management_interface }}
+  notify: Security configuration changed
+  tags:
+    - ntp
+
+- name: Configure Syslog
+  cisco.ios.ios_config:
+    lines:
+      - logging host {{ syslog_server }}
+      - logging trap informational
+      - logging source-interface {{ management_interface }}
+  notify: Security configuration changed
+  tags:
+    - syslog
+
+- name: Configure MOTD banner
+  cisco.ios.ios_config:
+    lines:
+      - "banner motd #{{ banner_text }}#"
+  notify: Security configuration changed
+  tags:
+    - banner

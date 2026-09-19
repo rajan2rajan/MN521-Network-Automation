@@ -1,0 +1,27 @@
+# Private inventory
+ansible/inventory.ini
+ansible/inventory.ini.private
+
+# Password files
+*.vault_pass
+.vault_pass
+
+# SSH/private keys
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Cisco images
+*.bin
+*.image
+*.qcow2
+
+# Temporary files
+*.retry
+*.log
+__pycache__/
+*.pyc
+*.swp
+*~
+.DS_Store

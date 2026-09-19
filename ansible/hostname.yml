@@ -1,0 +1,33 @@
+---
+- name: Automate router hostnames
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+    - name: Configure hostname on R1
+      cisco.ios.ios_config:
+        lines:
+          - hostname HQ-R1
+      when: inventory_hostname == "R1"
+
+    - name: Configure hostname on R2
+      cisco.ios.ios_config:
+        lines:
+          - hostname BRANCH-R1
+      when: inventory_hostname == "R2"
+
+    - name: Configure hostname on R3
+      cisco.ios.ios_config:
+        lines:
+          - hostname DC-R1
+      when: inventory_hostname == "R3"
+
+    - name: Configure hostname on R4
+      cisco.ios.ios_config:
+        lines:
+          - hostname CORE-R1
+      when: inventory_hostname == "R4"
+
+    - name: Save configuration
+      cisco.ios.ios_config:
+        save_when: modified

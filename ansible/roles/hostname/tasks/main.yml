@@ -1,0 +1,6 @@
+---
+- name: Configure router hostname
+  cisco.ios.ios_config:
+    lines:
+      - "hostname {{ hostname_map[inventory_hostname] }}"
+  when: inventory_hostname in hostname_map

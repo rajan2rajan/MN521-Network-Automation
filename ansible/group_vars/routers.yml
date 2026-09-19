@@ -1,0 +1,5 @@
+---
+ntp_server: 192.168.100.10
+syslog_server: 192.168.100.10
+ssh_allowed_host: 192.168.100.10
+banner_text: "WARNING: Authorized access only. Activity may be monitored."

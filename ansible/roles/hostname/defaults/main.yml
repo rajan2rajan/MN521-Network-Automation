@@ -1,0 +1,6 @@
+---
+hostname_map:
+  R1: HQ-R1
+  R2: BRANCH-R1
+  R3: DC-R1
+  R4: CORE-R1

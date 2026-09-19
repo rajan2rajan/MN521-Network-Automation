@@ -1,0 +1,8 @@
+---
+- name: Rajan Network Automation
+  hosts: routers
+  gather_facts: no
+
+  roles:
+    - hostname
+    - vlan
