@@ -1,2 +1,22 @@
 ---
 management_interface: FastEthernet2/0
+ospf_router_id: 4.4.4.4
+
+ospf_networks:
+  - network: 10.0.14.0
+    wildcard: 0.0.0.3
+    area: 0
+
+  - network: 10.0.24.0
+    wildcard: 0.0.0.3
+    area: 0
+
+  - network: 10.0.34.0
+    wildcard: 0.0.0.3
+    area: 0
+
+  - network: 192.168.100.0
+    wildcard: 0.0.0.255
+    area: 0
+ospf_passive_interfaces:
+  - FastEthernet2/0

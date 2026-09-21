@@ -1,0 +1,8 @@
+router-id {{ ospf_router_id }}
+log-adjacency-changes
+{% for interface in ospf_passive_interfaces | default([]) %}
+passive-interface {{ interface }}
+{% endfor %}
+{% for item in ospf_networks %}
+network {{ item.network }} {{ item.wildcard }} area {{ item.area }}
+{% endfor %}

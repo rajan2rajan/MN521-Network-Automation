@@ -1,5 +1,6 @@
 ---
-ntp_server: 192.168.100.10
-syslog_server: 192.168.100.10
-ssh_allowed_host: 192.168.100.10
-banner_text: "WARNING: Authorized access only. Activity may be monitored."
+ansible_connection: ansible.netcommon.network_cli
+ansible_network_os: cisco.ios.ios
+ansible_user: nishan
+ansible_network_cli_ssh_type: paramiko
+ansible_command_timeout: 60

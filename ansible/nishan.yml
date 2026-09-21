@@ -1,0 +1,7 @@
+---
+- name: Nishan Routing and OSPF Automation
+  hosts: routers
+  gather_facts: false
+
+  roles:
+    - ospf

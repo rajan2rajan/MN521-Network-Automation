@@ -45,3 +45,6 @@ gns3/**/c7200_*_nvram
 # Private inventory
 ansible/inventory.ini.private
 ansible/inventory.ini
+ansible/backup/
+ansible/backup/
+*.backup*

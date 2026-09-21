@@ -1,0 +1,15 @@
+---
+- name: Verify SSH Configuration
+  hosts: routers
+  gather_facts: false
+
+  tasks:
+    - name: Check SSH status
+      cisco.ios.ios_command:
+        commands:
+          - show ip ssh
+      register: ssh_status
+
+    - name: Display SSH status
+      ansible.builtin.debug:
+        var: ssh_status.stdout_lines

@@ -1,0 +1,7 @@
+---
+- name: Nishan SSH Automation
+  hosts: routers
+  gather_facts: false
+
+  roles:
+    - ssh

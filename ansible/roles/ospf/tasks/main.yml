@@ -1,0 +1,8 @@
+---
+- name: Configure OSPF using Jinja2 template
+  cisco.ios.ios_config:
+    parents:
+      - router ospf 1
+    lines: "{{ lookup('ansible.builtin.template', 'ospf.j2').splitlines() }}"
+    match: line
+    save_when: modified
