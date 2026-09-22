@@ -1,0 +1,30 @@
+---
+- name: Configure Management ACL on MN521 Routers
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+
+    - name: Create management access control list
+      cisco.ios.ios_config:
+        parents: ip access-list standard MGMT_ONLY
+        lines:
+          - 10 permit 192.168.100.0 0.0.0.255
+          - 20 deny any
+
+    - name: Apply ACL to VTY lines
+      cisco.ios.ios_config:
+        parents: line vty 0 4
+        lines:
+          - access-class MGMT_ONLY in
+          - transport input ssh
+
+    - name: Verify ACL configuration
+      cisco.ios.ios_command:
+        commands:
+          - show access-lists
+      register: acl_output
+
+    - name: Display ACL
+      ansible.builtin.debug:
+        var: acl_output.stdout_lines

@@ -1,0 +1,7 @@
+---
+- name: Check Cisco Router Interfaces Using Ansible Role
+  hosts: cisco_devices
+  gather_facts: false
+
+  roles:
+    - MN521-AnsibleLab-Role

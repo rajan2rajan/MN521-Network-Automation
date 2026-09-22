@@ -1,0 +1,15 @@
+---
+- name: Check router interfaces
+  hosts: routers
+  gather_facts: false
+
+  tasks:
+    - name: Get interface details
+      cisco.ios.ios_command:
+        commands:
+          - show ip interface brief
+      register: interface_result
+
+    - name: Display interface details
+      ansible.builtin.debug:
+        var: interface_result.stdout_lines
