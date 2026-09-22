@@ -1,0 +1,20 @@
+---
+- name: MN521 Network Monitoring and Verification
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+
+    - name: Collect network verification information
+      cisco.ios.ios_command:
+        commands:
+          - show ip interface brief
+          - show ip route
+          - show access-lists
+          - show clock
+      register: verify_output
+
+    - name: Display verification results
+      ansible.builtin.debug:
+        var: verify_output.stdout_lines
+

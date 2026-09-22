@@ -1,0 +1,17 @@
+---
+- name: Final Security Verification
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+
+    - name: Verify ACL and SSH VTY configuration
+      cisco.ios.ios_command:
+        commands:
+          - show access-lists MGMT_ONLY
+          - show running-config | section line vty
+      register: security_output
+
+    - name: Display final security configuration
+      ansible.builtin.debug:
+        var: security_output.stdout_lines
